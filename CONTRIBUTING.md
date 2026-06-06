@@ -1,114 +1,172 @@
 # Contributing to Blood Bank Management System (BBMS)
 
 Thank you for your interest in contributing to this project!  
-Follow the steps below to get started.
+Every contribution — big or small — helps save lives. Follow the steps below to get started.
 
+---
 
 ## 1. Fork the Repository
-Click "Fork" on the top-right of the repository.  
-This creates your own copy.
+
+Click **"Fork"** on the top-right corner of the repository page.  
+This creates your own personal copy of the project.
+
+---
 
 ## 2. Clone Your Fork
 
-
 ```bash
-git clone https://github.com/suraj-savle/blood-bank-management-system.git
+git clone https://github.com/PRASANTH8220/BLOOD_BANK_MANAGEMENT_SYSTEM.git
+cd BLOOD_BANK_MANAGEMENT_SYSTEM
 ```
 
-## 3. Create a New Branch
+---
+
+## 3. Add the Upstream Remote
+
+This keeps your fork in sync with the original repo:
+
 ```bash
-git checkout -b feature-branch-name
+git remote add origin https://github.com/PRASANTH8220/BLOOD_BANK_MANAGEMENT_SYSTEM.git
+git remote -v
 ```
 
-### 4. Install Dependencies
+---
+
+## 4. Create a New Branch
+
+Always work on a separate branch — never directly on `main`:
+
+```bash
+git checkout -b feature/your-feature-name
+```
+
+Example:
+```bash
+git checkout -b feature/donor-search-filter
+```
+
+---
+
+## 5. Set Up the Project
 
 ### 🐳 Option 1: Run with Docker (Recommended)
 
-Make sure Docker Desktop is installed and running.
+Make sure **Docker Desktop** is installed and running.
 
 ```bash
 docker compose up --build
 ```
 
 Access the app:
+- **Frontend** → http://localhost
+- **Backend** → http://localhost:3000
 
-Frontend → http://localhost
-
-Backend → http://localhost:3000
-
-Seed Admin User (if needed)
-
+Seed the admin user if needed:
 ```bash
 docker exec -it backend node seedAdmin.js
 ```
 
-### 💻 Option 2: Run without Docker (Manual Setup)
+---
 
+### 💻 Option 2: Manual Setup (Without Docker)
 
-### Backend
-
+**Backend:**
 ```bash
 cd backend
 npm install
+npm start
 ```
 
-### Frontend
-
-
+**Frontend:**
 ```bash
 cd ../frontend
 npm install
 npm run dev
 ```
 
-## 5. Environment Variables
-Create a `.env` file inside the backend folder:
+---
 
+## 6. Environment Variables
 
-```bash
+Create a `.env` file inside the `backend/` folder:
+
+```env
 MONGO_URI=your_mongo_uri
 JWT_SECRET=your_jwt_secret
 PORT=5000
 ```
 
+> ⚠️ Never commit your `.env` file. It is already listed in `.gitignore`.
 
-## 6. Run the Project
-
-### Backend
-
-```bash
-npm start
-```
-
-### Frontend
-
-```bash
-npm run dev
-```
 ---
 
-## 7. Commit Your Changes
+## 7. Make Your Changes
+
+- Write clean, readable, well-commented code
+- Follow the existing folder structure
+- Test your changes before committing
+
+---
+
+## 8. Commit Your Changes
 
 ```bash
 git add .
-git commit -m "Meaningful commit message"
+git commit -m "feat: add donor search filter by blood group"
 ```
 
-## 8. Push and Create a Pull Request
+**Commit message format:**
+
+| Prefix | Use for |
+|---|---|
+| `feat:` | New feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation update |
+| `refactor:` | Code restructure |
+| `chore:` | Dependency or config update |
+
+---
+
+## 9. Push and Create a Pull Request
 
 ```bash
-git push origin feature-branch-name
+git push origin feature/your-feature-name
 ```
 
-Go to your fork → "Compare & Pull Request"
+Then go to your fork on GitHub → click **"Compare & Pull Request"** → fill in a clear description of what you changed and why.
 
+---
 
-## 9. Contribution Rules
-- Write clean, readable code  
-- Add comments where needed  
-- Use meaningful commit messages  
-- Write PR description clearly  
-- Do not push `.env` or sensitive data  
-- Follow the folder structure
+## 10. Contribution Rules
 
-Thank you for contributing!
+- ✅ Write clean, readable, and well-structured code
+- ✅ Add comments wherever the logic isn't immediately obvious
+- ✅ Use meaningful branch names and commit messages
+- ✅ Describe your PR clearly — what changed and why
+- ✅ Follow the existing folder structure of the project
+- ❌ Do not push `.env` files or any sensitive credentials
+- ❌ Do not push directly to the `main` branch
+- ❌ Do not submit PRs with broken builds or failing functionality
+
+---
+
+## Project Structure (Quick Reference)
+
+```
+BLOOD_BANK_MANAGEMENT_SYSTEM/
+├── backend/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   └── .env
+└── frontend/
+    ├── src/
+    ├── public/
+    └── index.html
+```
+
+---
+
+Thank you for contributing — your effort directly helps build a system that saves lives. 🩸
