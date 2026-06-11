@@ -1,234 +1,252 @@
-# Blood Bank Management System (BBMS)
+# 🩸 Blood Bank Management System — Localhost Setup
 
-<div align="center">
-
-![BBMS Banner](https://img.shields.io/badge/Blood%20Bank-Management%20System-red?style=for-the-badge&logo=heart&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat-square&logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=flat-square&logo=mongodb)
-![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens)
-
-**A full-stack web platform built to modernize blood bank operations across hospitals and donation centers.**
-
-</div>
+A full-stack web app for managing blood bank operations: donors, hospitals, blood labs, and admins.
 
 ---
 
-## Overview
+## 🛠 Tech Stack
 
-The **Blood Bank Management System (BBMS)** is a web-based platform designed to streamline the management of blood donations, hospital requests, and inventory tracking. By replacing manual processes with a structured digital workflow, BBMS enables hospitals and blood banks to access real-time inventory, maintain donor records, and process blood requests efficiently.
-
----
-
-## The Problem
-
-Many blood banks still rely on manual documentation, scattered information, and slow communication methods. This leads to:
-
-- ❌ No real-time visibility of blood availability
-- ❌ Delays during emergency blood requirements
-- ❌ Frequent data entry errors
-- ❌ Difficulty managing donors, patients, and hospital requests
-- ❌ Lack of a centralized system connecting all operations
-
-These limitations reduce the efficiency and reliability of blood bank operations — sometimes at the cost of lives.
+| Layer     | Technology                          |
+|-----------|-------------------------------------|
+| Frontend  | React 19 + Vite + Tailwind CSS v4   |
+| Backend   | Node.js + Express 5                 |
+| Database  | MongoDB (local)                     |
+| Auth      | JWT (jsonwebtoken + bcryptjs)        |
 
 ---
 
-## Our Solution
+## 📋 Prerequisites
 
-BBMS provides an **all-in-one, centralized, and secure system** that handles all operations digitally:
+Make sure you have these installed:
 
-- ✅ Donor registration and profile management
-- ✅ Hospital blood request creation and real-time status tracking
-- ✅ Live inventory monitoring by blood group and unit count
-- ✅ Role-based secure authentication using JWT
-- ✅ Fully structured RESTful backend APIs
-- ✅ Clean, responsive frontend interface for hospitals, donors, and admins
+- **Node.js** v18+ → https://nodejs.org
+- **MongoDB Community** (running locally on port 27017) → https://www.mongodb.com/try/download/community
+- **npm** (comes with Node.js)
 
 ---
 
-## Tech Stack
+## 🚀 Quick Start
 
-### Frontend
-| Technology | Purpose |
-|---|---|
-| React.js 19 | UI framework |
-| React Router v7 | Client-side routing |
-| Axios | HTTP requests |
-| Tailwind CSS v4 | Styling |
-| Framer Motion | Animations |
-| Lucide React | Icons |
-
-### Backend
-| Technology | Purpose |
-|---|---|
-| Node.js | Server runtime |
-| Express.js | REST API framework |
-| MongoDB + Mongoose | Database |
-| JWT | Authentication |
-| bcryptjs | Password hashing |
-| Swagger | API documentation |
-
----
-
-## Screenshots
-
-**Login Page**
-
-<img width="1920" height="970" alt="Login Page" src="https://github.com/user-attachments/assets/b7796043-c68d-4dda-8203-0be6b79ee5c0" />
-
-**Admin Dashboard**
-
-<img width="1920" height="1257" alt="Admin Dashboard" src="https://github.com/user-attachments/assets/08f36872-ee09-4716-a66a-316aa1c763d5" />
-
-**Donor Dashboard**
-
-<img width="1732" height="1536" alt="Donor Dashboard" src="https://github.com/user-attachments/assets/9d715e70-c930-4f00-b8f4-0e28d43ee07e" />
-
-**Manage Requests**
-
-<img width="1920" height="1518" alt="Manage Requests" src="https://github.com/user-attachments/assets/7aafa2aa-d2d4-4f20-982b-136de08df71a" />
-
-**Inventory Overview**
-
-<img width="1920" height="1121" alt="Inventory Overview" src="https://github.com/user-attachments/assets/65110412-2e41-4c0f-824d-7ee9ebed91bb" />
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js v18+
-- npm
-- MongoDB (local or Atlas)
-- Docker Desktop *(optional)*
-
----
-
-### Clone the Repository
+### 1. Start MongoDB
 
 ```bash
-git clone https://github.com/PRASANTH8220/BLOOD_BANK_MANAGEMENT_SYSTEM.git
-cd BLOOD_BANK_MANAGEMENT_SYSTEM
+# macOS/Linux
+mongod --dbpath /data/db
+
+# Windows
+"C:\Program Files\MongoDB\Server\{version}\bin\mongod.exe"
+
+# Or if installed as a service, it may already be running
 ```
 
----
-
-### 💻 Option 1: Manual Setup
-
-#### Backend
+### 2. Setup Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file inside `backend/`:
-
-```env
-MONGO_URI=your_mongo_uri
-JWT_SECRET=your_jwt_secret
+Copy `.env` (already included) and verify values:
+```
 PORT=5000
+MONGO_URI=mongodb://localhost:27017/blood_bank_db
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
 ```
 
-#### Seed Admin Account (First Time Only)
-
-Before starting the server, create the admin user:
-
-1. Open `backend/seedAdmin.js`
-2. Update the admin credentials inside the file
-3. Run the seed script:
-
+Seed the admin account (run once):
 ```bash
-node seedAdmin.js
+npm run seed
+```
+This creates: **admin@bbms.com** / **Admin@1234**
+
+Start the backend:
+```bash
+npm run dev     # with auto-reload (nodemon)
+# or
+npm start       # plain node
 ```
 
-This creates the admin account in your database.
+Backend runs on → **http://localhost:5000**
 
-#### Start the Backend
-
-```bash
-npm start
-```
-
-#### Frontend
+### 3. Setup Frontend
 
 ```bash
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
 
-Frontend runs at → `http://localhost:5173`  
-Backend runs at → `http://localhost:5000`
+Frontend runs on → **http://localhost:5173**
 
 ---
 
-### 🐳 Option 2: Run with Docker (Recommended)
+## 🔑 Default Accounts
 
-Make sure **Docker Desktop** is installed and running.
+| Role      | Email              | Password    | Notes                            |
+|-----------|--------------------|-------------|----------------------------------|
+| Admin     | admin@bbms.com     | Admin@1234  | Created by `npm run seed`        |
+| Donor     | *(register)*       | your choice | Register at `/register/donor`    |
+| Hospital  | *(register)*       | your choice | Register at `/register/facility` |
+| Blood Lab | *(register)*       | your choice | Register at `/register/facility` |
 
-```bash
-docker compose up --build
-```
-
-| Service | URL |
-|---|---|
-| Frontend | http://localhost:5173 |
-| Backend | http://localhost:3000 |
-
-Seed the admin user (if needed):
-
-```bash
-docker exec -it backend node seedAdmin.js
-```
+> ⚠️ Hospital and Blood Lab accounts require **admin approval** before login.
 
 ---
 
-## API Documentation
+## 🗺 Frontend Routes
 
-Once the backend is running, access the Swagger UI at:
+### Public
+| Path                  | Description              |
+|-----------------------|--------------------------|
+| `/`                   | Landing page             |
+| `/login`              | Login (all roles)        |
+| `/register/donor`     | Donor registration       |
+| `/register/facility`  | Hospital / Blood Lab reg |
+| `/about`              | About page               |
+| `/contact`            | Contact page             |
 
-```
-http://localhost:5000/api/doc
-```
+### Donor Dashboard (JWT protected)
+| Path              | Description           |
+|-------------------|-----------------------|
+| `/donor`          | Donor dashboard       |
+| `/donor/profile`  | Donor profile         |
+| `/donor/camps`    | Available blood camps |
+| `/donor/history`  | Donation history      |
+
+### Hospital Dashboard (JWT protected)
+| Path                               | Description            |
+|------------------------------------|------------------------|
+| `/hospital`                        | Hospital dashboard     |
+| `/hospital/blood-request-create`   | Create blood request   |
+| `/hospital/blood-request-history`  | Request history        |
+| `/hospital/inventory`              | Blood stock view       |
+| `/hospital/donors`                 | Donor directory        |
+
+### Blood Lab Dashboard (JWT protected)
+| Path              | Description           |
+|-------------------|-----------------------|
+| `/lab`            | Lab dashboard         |
+| `/lab/inventory`  | Blood stock           |
+| `/lab/camps`      | Manage blood camps    |
+| `/lab/profile`    | Lab profile           |
+| `/lab/requests`   | Blood requests        |
+| `/lab/donor`      | Donor search/records  |
+
+### Admin Dashboard (JWT protected)
+| Path                   | Description              |
+|------------------------|--------------------------|
+| `/admin`               | Admin dashboard          |
+| `/admin/verification`  | Approve/reject facilities|
+| `/admin/donors`        | All donors               |
+| `/admin/facilities`    | All facilities           |
 
 ---
 
-## Project Structure
+## 📡 Backend API Routes
+
+Base URL: `http://localhost:5000`
+
+### Auth  `/api/auth`
+| Method | Path        | Auth | Description         |
+|--------|-------------|------|---------------------|
+| POST   | /register   | No   | Register any role   |
+| POST   | /login      | No   | Login (all roles)   |
+| GET    | /profile    | JWT  | Get own profile     |
+
+### Donor  `/api/donor`
+| Method | Path     | Auth  | Description          |
+|--------|----------|-------|----------------------|
+| GET    | /profile | Donor | Get donor profile    |
+| PUT    | /profile | Donor | Update profile       |
+| GET    | /camps   | Donor | List blood camps     |
+| GET    | /history | Donor | Donation history     |
+| GET    | /stats   | Donor | Donation stats       |
+
+### Facility  `/api/facility`
+| Method | Path       | Auth     | Description            |
+|--------|------------|----------|------------------------|
+| GET    | /dashboard | Facility | Dashboard stats        |
+| GET    | /profile   | Facility | Facility profile       |
+| PUT    | /profile   | Facility | Update profile         |
+| GET    | /labs      | Facility | List all labs          |
+
+### Blood Lab  `/api/blood-lab`
+| Method | Path                   | Auth | Description              |
+|--------|------------------------|------|--------------------------|
+| GET    | /dashboard             | Lab  | Lab dashboard stats      |
+| GET    | /history               | Lab  | Activity history         |
+| POST   | /camps                 | Lab  | Create camp              |
+| GET    | /camps                 | Lab  | List camps               |
+| PUT    | /camps/:id             | Lab  | Update camp              |
+| PATCH  | /camps/:id/status      | Lab  | Update camp status       |
+| DELETE | /camps/:id             | Lab  | Delete camp              |
+| POST   | /blood/add             | Lab  | Add blood stock          |
+| POST   | /blood/remove          | Lab  | Remove blood stock       |
+| GET    | /blood/stock           | Lab  | View blood stock         |
+| GET    | /blood/requests        | Lab  | View blood requests      |
+| PUT    | /blood/requests/:id    | Lab  | Update request status    |
+| GET    | /labs                  | Lab  | All labs list            |
+| GET    | /donors/search         | Lab  | Search donors            |
+| POST   | /donors/donate/:id     | Lab  | Mark donation            |
+| GET    | /donations/recent      | Lab  | Recent donations         |
+
+### Hospital  `/api/hospital`
+| Method | Path                  | Auth     | Description            |
+|--------|-----------------------|----------|------------------------|
+| POST   | /blood/request        | Hospital | Request blood          |
+| GET    | /blood/requests       | Hospital | View own requests      |
+| GET    | /dashboard            | Hospital | Dashboard stats        |
+| GET    | /blood/stock          | Hospital | Blood stock            |
+| GET    | /history              | Hospital | Activity history       |
+| GET    | /donors               | Hospital | Donor directory        |
+| POST   | /donors/:id/contact   | Hospital | Log contact attempt    |
+
+### Admin  `/api/admin`
+| Method | Path                    | Auth  | Description              |
+|--------|-------------------------|-------|--------------------------|
+| GET    | /facilities             | Admin | All facilities           |
+| PUT    | /facility/approve/:id   | Admin | Approve facility         |
+| PUT    | /facility/reject/:id    | Admin | Reject facility          |
+| GET    | /dashboard              | Admin | Dashboard stats          |
+| GET    | /donors                 | Admin | All donors               |
+
+---
+
+## ⚠️ Known Issues & Notes
+
+1. **`campRoutes.js` and `hospital.js`** — These older route files are in `_legacy/` folder. They use a different middleware pattern and are NOT active. Do not import them.
+
+2. **`authentication.js`** — Duplicate auth router (also in `_legacy/`). The active one is `authRoutes.js` → `authContoller.js`.
+
+3. **Facility approval** — Hospitals and Blood Labs must be approved by the admin before they can log in.
+
+4. **JWT is stored in localStorage** — This is fine for development. For production, consider httpOnly cookies.
+
+5. **Password security** — All passwords are bcrypt-hashed via Mongoose pre-save hooks.
+
+---
+
+## 📁 Project Structure
 
 ```
-BLOOD_BANK_MANAGEMENT_SYSTEM/
+BBMS_LOCAL/
 ├── backend/
-│   ├── controllers/        # Business logic
-│   ├── middleware/         # Auth middleware
-│   ├── models/             # Mongoose schemas
-│   ├── routes/             # API routes
-│   ├── openapi/            # Swagger specs
-│   ├── seedAdmin.js        # Admin seeder
-│   ├── server.js           # Entry point
-│   └── .env                # Environment variables
-└── frontend/
-    ├── src/
-    │   ├── assets/
-    │   └── ...
-    ├── public/
-    └── index.html
+│   ├── _legacy/          ← Old/unused route files (safe to ignore)
+│   ├── config/db.js
+│   ├── controllers/      ← Business logic
+│   ├── middlewares/      ← JWT auth middleware (3 variants)
+│   ├── models/           ← Mongoose schemas
+│   ├── routes/           ← Active API routes
+│   ├── seedAdmin.js      ← Run once to create admin
+│   ├── server.js         ← Entry point
+│   └── .env              ← Local config
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx       ← All frontend routes defined here
+│   │   ├── pages/        ← Route components
+│   │   ├── components/   ← Shared UI components
+│   │   └── utils/        ← Auth helpers
+│   ├── vite.config.js
+│   └── .env              ← VITE_API_URL etc.
+└── README.md
 ```
-
----
-
-## Contributing
-
-Contributions are welcome! Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting a pull request.
-
----
-
-## Author
-
-**Prasanth** — [@PRASANTH8220](https://github.com/PRASANTH8220)
-
----
-
-> Built with 🩸 to save lives — one unit at a time.
