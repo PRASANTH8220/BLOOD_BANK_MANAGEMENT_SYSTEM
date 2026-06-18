@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from "./pages/auth/Login";
 import LandingPage from "./pages/Landing";
 import FacilityForm from "./pages/auth/FacultyRegister";
+import ForgotPassword from "./pages/ForgotPassword";
 import DonorRegister from "./pages/auth/DonorRegister";
 import DonorDashboard from "./pages/donor/DonorDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/register/donor" element={<DonorRegister />} />
         <Route path="/register/facility" element={<FacilityForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 

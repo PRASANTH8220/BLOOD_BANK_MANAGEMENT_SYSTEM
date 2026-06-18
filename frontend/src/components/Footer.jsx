@@ -7,23 +7,23 @@ const Footer = () => {
 
   const quickLinks = [
     { name: "About Us", path: "/about" },
-    { name: "Our Mission", path: "/mission" },
-    { name: "Success Stories", path: "/stories" },
-    { name: "News & Updates", path: "/news" },
+    { name: "Our Mission", path: "/about" },
+    { name: "Success Stories", path: "/about" },
+    { name: "News & Updates", path: "/contact" },
   ];
 
   const donorResources = [
     { name: "Become a Donor", path: "/register/donor" },
-    { name: "Eligibility Criteria", path: "/eligibility" },
-    { name: "Donation Process", path: "/process" },
-    { name: "Donor Benefits", path: "/benefits" },
+    { name: "Eligibility Criteria", path: "/register/donor" },
+    { name: "Donation Process", path: "/register/donor" },
+    { name: "Donor Benefits", path: "/register/donor" },
   ];
 
   const hospitalResources = [
     { name: "Partner with Us", path: "/register/facility" },
-    { name: "Blood Request", path: "/request-blood" },
-    { name: "Inventory Management", path: "/inventory" },
-    { name: "Emergency Protocol", path: "/emergency" },
+    { name: "Blood Request", path: "/login" },
+    { name: "Inventory Management", path: "/login" },
+    { name: "Emergency Protocol", path: "/contact" },
   ];
 
   const socialLinks = [
@@ -160,13 +160,13 @@ const Footer = () => {
               © {currentYear} BloodConnect. All rights reserved. Saving lives through technology.
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-400">
-              <Link to="/privacy" className="hover:text-white transition-colors duration-200">
+              <Link to="/contact" className="hover:text-white transition-colors duration-200">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="hover:text-white transition-colors duration-200">
+              <Link to="/contact" className="hover:text-white transition-colors duration-200">
                 Terms of Service
               </Link>
-              <Link to="/cookies" className="hover:text-white transition-colors duration-200">
+              <Link to="/contact" className="hover:text-white transition-colors duration-200">
                 Cookie Policy
               </Link>
             </div>

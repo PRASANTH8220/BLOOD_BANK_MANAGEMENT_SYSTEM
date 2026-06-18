@@ -32,8 +32,8 @@ export default function Header({ currentUser }) {
 
   const authLinks = currentUser
     ? [
-        { name: "Dashboard", path: "/dashboard" },
-        { name: "Profile", path: "/profile" },
+        { name: "Dashboard", path: "/login" },
+        
       ]
     : [
         { name: "Login", path: "/login" },

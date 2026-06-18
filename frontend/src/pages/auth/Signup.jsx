@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AppWindow } from "lucide-react";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -16,15 +17,16 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("/api/auth/register", formData);
-      alert("✅ Registered Successfully!");
-      navigate("/login"); // redirect after success
-    } catch (err) {
-      alert("❌ " + err.response.data.error);
-    }
-  };
+  e.preventDefault();
+  try {
+    await axios.post("/api/auth/register", formData);
+
+    alert("✅ Registered Successfully!");
+    navigate("/login"); // redirect after success
+  } catch (err) {
+    alert("❌ " + err.response.data.error);
+  }
+};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
