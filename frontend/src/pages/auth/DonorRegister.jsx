@@ -333,10 +333,10 @@ export default function DonorRegisterForm() {
   const progressPercentage = (step / 3) * 100;
 
   return (
-    <div className="min-h-screen bg-red-50 flex items-center justify-center py-8 px-4 outline-0">
+    <div className="min-h-screen bg-linen flex items-center justify-center py-8 px-4 outline-0">
       <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg overflow-hidden">
         {/* Header Section */}
-        <div className="bg-red-700 text-white p-6">
+        <div className="bg-oxblood text-linen p-6">
           <h1 className="text-2xl font-bold text-center mb-2">
             Blood Donor Registration
           </h1>
@@ -349,7 +349,7 @@ export default function DonorRegisterForm() {
             <span>Step {step} of 3</span>
             <span>{progressPercentage.toFixed(0)}% Complete</span>
           </div>
-          <div className="w-full bg-red-300 rounded-full h-2.5">
+          <div className="w-full bg-linen/40 rounded-full h-2.5">
             <div
               className="bg-white h-2.5 rounded-full transition-all duration-300"
               style={{ width: `${progressPercentage}%` }}
@@ -375,7 +375,7 @@ export default function DonorRegisterForm() {
             <div className="space-y-6">
               <div>
                 <label htmlFor="fullName" className="block font-medium mb-2">
-                  Full Name <span className="text-red-500">*</span>
+                  Full Name <span className="text-oxblood">*</span>
                 </label>
                 <input
                   id="fullName"
@@ -384,15 +384,15 @@ export default function DonorRegisterForm() {
                   value={formData.fullName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                     shouldShowError("fullName")
-                      ? "border-red-500"
-                      : "border-gray-300"
+                      ? "border-oxblood"
+                      : "border-parchment-deep"
                   }`}
                   placeholder="Enter your full name"
                 />
                 {shouldShowError("fullName") && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center">
+                  <p className="text-oxblood text-sm mt-1 flex items-center">
                     <span className="mr-1">⚠</span> {errors.fullName}
                   </p>
                 )}
@@ -400,7 +400,7 @@ export default function DonorRegisterForm() {
 
               <div>
                 <label htmlFor="email" className="block font-medium mb-2">
-                  Email <span className="text-red-500">*</span>
+                  Email <span className="text-oxblood">*</span>
                 </label>
                 <input
                   id="email"
@@ -409,15 +409,15 @@ export default function DonorRegisterForm() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                     shouldShowError("email")
-                      ? "border-red-500"
-                      : "border-gray-300"
+                      ? "border-oxblood"
+                      : "border-parchment-deep"
                   }`}
                   placeholder="Enter email address"
                 />
                 {shouldShowError("email") && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center">
+                  <p className="text-oxblood text-sm mt-1 flex items-center">
                     <span className="mr-1">⚠</span> {errors.email}
                   </p>
                 )}
@@ -425,7 +425,7 @@ export default function DonorRegisterForm() {
 
               <div>
                 <label htmlFor="password" className="block font-medium mb-2">
-                  Password <span className="text-red-500">*</span>
+                  Password <span className="text-oxblood">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -435,10 +435,10 @@ export default function DonorRegisterForm() {
                     value={formData.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("password")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     placeholder="Enter password (min 8 characters)"
                   />
@@ -454,7 +454,7 @@ export default function DonorRegisterForm() {
                   </button>
                 </div>
                 {shouldShowError("password") && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center">
+                  <p className="text-oxblood text-sm mt-1 flex items-center">
                     <span className="mr-1">⚠</span> {errors.password}
                   </p>
                 )}
@@ -463,7 +463,7 @@ export default function DonorRegisterForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="phone" className="block font-medium mb-2">
-                    Phone Number <span className="text-red-500">*</span>
+                    Phone Number <span className="text-oxblood">*</span>
                   </label>
                   <input
                     id="phone"
@@ -472,16 +472,16 @@ export default function DonorRegisterForm() {
                     value={formData.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("phone")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     placeholder="10-digit phone number"
                     maxLength="10"
                   />
                   {shouldShowError("phone") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span> {errors.phone}
                     </p>
                   )}
@@ -492,7 +492,7 @@ export default function DonorRegisterForm() {
                     htmlFor="emergencyContact"
                     className="block font-medium mb-2"
                   >
-                    Emergency Contact <span className="text-red-500">*</span>
+                    Emergency Contact <span className="text-oxblood">*</span>
                   </label>
                   <input
                     id="emergencyContact"
@@ -501,16 +501,16 @@ export default function DonorRegisterForm() {
                     value={formData.emergencyContact}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("emergencyContact")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     placeholder="10-digit emergency contact"
                     maxLength="10"
                   />
                   {shouldShowError("emergencyContact") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span> {errors.emergencyContact}
                     </p>
                   )}
@@ -525,7 +525,7 @@ export default function DonorRegisterForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="dob" className="block font-medium mb-2">
-                    Date of Birth <span className="text-red-500">*</span>
+                    Date of Birth <span className="text-oxblood">*</span>
                   </label>
                   <input
                     id="dob"
@@ -534,19 +534,19 @@ export default function DonorRegisterForm() {
                     value={formData.dob}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("dob")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                   />
                   {shouldShowError("dob") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span> {errors.dob}
                     </p>
                   )}
                   {formData.dob && (
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-ink-soft mt-1">
                       Age: {calculateAge(formData.dob)} years
                     </p>
                   )}
@@ -554,7 +554,7 @@ export default function DonorRegisterForm() {
 
                 <div>
                   <label htmlFor="gender" className="block font-medium mb-2">
-                    Gender <span className="text-red-500">*</span>
+                    Gender <span className="text-oxblood">*</span>
                   </label>
                   <select
                     id="gender"
@@ -562,10 +562,10 @@ export default function DonorRegisterForm() {
                     value={formData.gender}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("gender")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                   >
                     <option value="">Select Gender</option>
@@ -576,7 +576,7 @@ export default function DonorRegisterForm() {
                     ))}
                   </select>
                   {shouldShowError("gender") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span> {errors.gender}
                     </p>
                   )}
@@ -585,7 +585,7 @@ export default function DonorRegisterForm() {
 
               <div>
                 <label htmlFor="bloodGroup" className="block font-medium mb-2">
-                  Blood Group <span className="text-red-500">*</span>
+                  Blood Group <span className="text-oxblood">*</span>
                 </label>
                 <select
                   id="bloodGroup"
@@ -593,10 +593,10 @@ export default function DonorRegisterForm() {
                   value={formData.bloodGroup}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                     shouldShowError("bloodGroup")
-                      ? "border-red-500"
-                      : "border-gray-300"
+                      ? "border-oxblood"
+                      : "border-parchment-deep"
                   }`}
                 >
                   <option value="">Select Blood Group</option>
@@ -607,7 +607,7 @@ export default function DonorRegisterForm() {
                   ))}
                 </select>
                 {shouldShowError("bloodGroup") && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center">
+                  <p className="text-oxblood text-sm mt-1 flex items-center">
                     <span className="mr-1">⚠</span> {errors.bloodGroup}
                   </p>
                 )}
@@ -616,7 +616,7 @@ export default function DonorRegisterForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="weight" className="block font-medium mb-2">
-                    Weight (kg) <span className="text-red-500">*</span>
+                    Weight (kg) <span className="text-oxblood">*</span>
                   </label>
                   <input
                     id="weight"
@@ -625,17 +625,17 @@ export default function DonorRegisterForm() {
                     value={formData.healthInfo.weight}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("healthInfo.weight")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     placeholder="Minimum 45kg"
                     min="45"
                     step="0.1"
                   />
                   {shouldShowError("healthInfo.weight") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span>{" "}
                       {errors["healthInfo.weight"]}
                     </p>
@@ -644,7 +644,7 @@ export default function DonorRegisterForm() {
 
                 <div>
                   <label htmlFor="height" className="block font-medium mb-2">
-                    Height (cm) <span className="text-red-500">*</span>
+                    Height (cm) <span className="text-oxblood">*</span>
                   </label>
                   <input
                     id="height"
@@ -653,17 +653,17 @@ export default function DonorRegisterForm() {
                     value={formData.healthInfo.height}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("healthInfo.height")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     placeholder="Height in cm"
                     min="100"
                     step="0.1"
                   />
                   {shouldShowError("healthInfo.height") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span>{" "}
                       {errors["healthInfo.height"]}
                     </p>
@@ -678,7 +678,7 @@ export default function DonorRegisterForm() {
                   name="healthInfo.hasDiseases"
                   checked={formData.healthInfo.hasDiseases}
                   onChange={handleChange}
-                  className="w-4 h-4 accent-red-500"
+                  className="w-4 h-4 accent-oxblood"
                 />
                 <label htmlFor="hasDiseases" className="font-medium">
                   I have existing medical conditions
@@ -699,7 +699,7 @@ export default function DonorRegisterForm() {
                     value={formData.healthInfo.diseaseDetails}
                     onChange={handleChange}
                     rows="3"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                    className="w-full px-4 py-3 border border-parchment-deep rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition"
                     placeholder="Please describe any medical conditions, allergies, or medications..."
                   />
                 </div>
@@ -712,7 +712,7 @@ export default function DonorRegisterForm() {
             <div className="space-y-6">
               <div>
                 <label htmlFor="street" className="block font-medium mb-2">
-                  Street Address <span className="text-red-500">*</span>
+                  Street Address <span className="text-oxblood">*</span>
                 </label>
                 <input
                   id="street"
@@ -721,15 +721,15 @@ export default function DonorRegisterForm() {
                   value={formData.address.street}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                     shouldShowError("address.street")
-                      ? "border-red-500"
-                      : "border-gray-300"
+                      ? "border-oxblood"
+                      : "border-parchment-deep"
                   }`}
                   placeholder="Enter street address"
                 />
                 {shouldShowError("address.street") && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center">
+                  <p className="text-oxblood text-sm mt-1 flex items-center">
                     <span className="mr-1">⚠</span> {errors["address.street"]}
                   </p>
                 )}
@@ -738,7 +738,7 @@ export default function DonorRegisterForm() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                   <label htmlFor="state" className="block font-medium mb-2">
-                    State <span className="text-red-500">*</span>
+                    State <span className="text-oxblood">*</span>
                   </label>
                   <select
                     id="state"
@@ -752,10 +752,10 @@ export default function DonorRegisterForm() {
                       }));
                     }}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("address.state")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                   >
                     <option value="">Select State</option>
@@ -766,7 +766,7 @@ export default function DonorRegisterForm() {
                     ))}
                   </select>
                   {shouldShowError("address.state") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span> {errors["address.state"]}
                     </p>
                   )}
@@ -774,7 +774,7 @@ export default function DonorRegisterForm() {
 
                 <div>
                   <label htmlFor="city" className="block font-medium mb-2">
-                    City <span className="text-red-500">*</span>
+                    City <span className="text-oxblood">*</span>
                   </label>
                   <select
                     id="city"
@@ -782,10 +782,10 @@ export default function DonorRegisterForm() {
                     value={formData.address.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("address.city")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     disabled={!formData.address.state}
                   >
@@ -798,7 +798,7 @@ export default function DonorRegisterForm() {
                       ))}
                   </select>
                   {shouldShowError("address.city") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span> {errors["address.city"]}
                     </p>
                   )}
@@ -806,7 +806,7 @@ export default function DonorRegisterForm() {
 
                 <div>
                   <label htmlFor="pincode" className="block font-medium mb-2">
-                    Pincode <span className="text-red-500">*</span>
+                    Pincode <span className="text-oxblood">*</span>
                   </label>
                   <input
                     id="pincode"
@@ -815,16 +815,16 @@ export default function DonorRegisterForm() {
                     value={formData.address.pincode}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-oxblood focus:border-transparent transition ${
                       shouldShowError("address.pincode")
-                        ? "border-red-500"
-                        : "border-gray-300"
+                        ? "border-oxblood"
+                        : "border-parchment-deep"
                     }`}
                     placeholder="6-digit pincode"
                     maxLength="6"
                   />
                   {shouldShowError("address.pincode") && (
-                    <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <p className="text-oxblood text-sm mt-1 flex items-center">
                       <span className="mr-1">⚠</span>{" "}
                       {errors["address.pincode"]}
                     </p>
@@ -842,7 +842,7 @@ export default function DonorRegisterForm() {
               <button
                 type="button"
                 onClick={handleBack}
-                className="px-6 py-2.5 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300 transition font-medium"
+                className="px-6 py-2.5 bg-parchment text-ink rounded-lg hover:bg-parchment-deep transition font-medium"
                 disabled={isSubmitting}
               >
                 Back
@@ -853,7 +853,7 @@ export default function DonorRegisterForm() {
               <button
                 type="button"
                 onClick={handleNext}
-                className="px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-medium"
+                className="px-6 py-2.5 bg-oxblood text-linen rounded-lg hover:bg-oxblood-dark transition font-medium"
               >
                 Next Step
               </button>
@@ -862,7 +862,7 @@ export default function DonorRegisterForm() {
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                className="px-6 py-2.5 bg-role-lab text-linen rounded-lg hover:opacity-90 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
               >
                 {isSubmitting ? (
                   <>

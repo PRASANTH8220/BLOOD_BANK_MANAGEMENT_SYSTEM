@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 import LandingPage from "./pages/Landing";
-import FacilityForm from "./pages/auth/FacultyRegister";
 import ForgotPassword from "./pages/ForgotPassword";
-import DonorRegister from "./pages/auth/DonorRegister";
 import DonorDashboard from "./pages/donor/DonorDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./components/layouts/DashboardLayout";
@@ -34,8 +33,10 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
-        <Route path="/register/donor" element={<DonorRegister />} />
-        <Route path="/register/facility" element={<FacilityForm />} />
+        <Route path="/signup" element={<Signup />} />
+        {/* Legacy deep links redirect into the unified, role-tabbed signup page */}
+        <Route path="/register/donor" element={<Navigate to="/signup?role=donor" replace />} />
+        <Route path="/register/facility" element={<Navigate to="/signup?role=hospital" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />

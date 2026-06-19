@@ -1,106 +1,124 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AppWindow } from "lucide-react";
+import { useSearchParams, Link } from "react-router-dom";
+import { Heart, Building2, FlaskConical } from "lucide-react";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import DonorRegister from "./DonorRegister";
+import FacultyRegister from "./FacultyRegister";
 
-export default function Register() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "user",
-  });
-  const navigate = useNavigate();
+const ROLES = [
+  {
+    key: "donor",
+    label: "Donor",
+    icon: Heart,
+    activeTab: "bg-role-donor text-linen shadow-sm",
+    badgeBg: "bg-role-donor-soft",
+    badgeText: "text-role-donor",
+    helper:
+      "Register to donate blood, track your eligibility, and get notified when your blood type is needed.",
+  },
+  {
+    key: "hospital",
+    label: "Hospital",
+    icon: Building2,
+    activeTab: "bg-role-hospital text-linen shadow-sm",
+    badgeBg: "bg-role-hospital-soft",
+    badgeText: "text-role-hospital",
+    helper:
+      "Register your hospital to request blood units and access the verified donor network.",
+  },
+  {
+    key: "blood-lab",
+    label: "Blood Lab",
+    icon: FlaskConical,
+    activeTab: "bg-role-lab text-linen shadow-sm",
+    badgeBg: "bg-role-lab-soft",
+    badgeText: "text-role-lab",
+    helper:
+      "Register your blood lab to manage inventory, run camps, and fulfill hospital requests.",
+  },
+];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+// Map common aliases (e.g. "facility") to a valid tab key.
+const ROLE_ALIASES = { facility: "hospital", lab: "blood-lab" };
+
+export default function Signup() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requested = ROLE_ALIASES[searchParams.get("role")] || searchParams.get("role");
+  const initialRole = ROLES.some((r) => r.key === requested) ? requested : "donor";
+
+  const activeRole = ROLES.some((r) => r.key === initialRole) ? initialRole : "donor";
+  const role = ROLES.find((r) => r.key === activeRole);
+
+  const setActiveRole = (key) => {
+    setSearchParams({ role: key });
   };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    await axios.post("/api/auth/register", formData);
-
-    alert("✅ Registered Successfully!");
-    navigate("/login"); // redirect after success
-  } catch (err) {
-    alert("❌ " + err.response.data.error);
-  }
-};
-
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
-          <div>
-            <label className="block text-gray-600">Full Name</label>
-            <input
-              type="text"
-              name="name"
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
-              required
-            />
+    <div className="min-h-screen bg-linen pb-16 pt-32">
+      <Header />
+
+      <div className="container mx-auto px-4">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <h1 className="font-display text-3xl text-ink md:text-4xl">
+            Join LifeLine
+          </h1>
+          <p className="mt-3 text-lg text-ink-soft">
+            One platform, three ways to help. Choose the role that fits you.
+          </p>
+        </div>
+
+        {/* Role tabs */}
+        <div className="mx-auto mb-10 flex max-w-xl gap-2 rounded-2xl border border-parchment-deep bg-white p-1.5 shadow-sm">
+          {ROLES.map((r) => {
+            const Icon = r.icon;
+            const active = r.key === activeRole;
+            return (
+              <button
+                key={r.key}
+                type="button"
+                onClick={() => setActiveRole(r.key)}
+                className={`flex flex-1 flex-col items-center gap-1.5 rounded-xl px-3 py-3 text-sm font-medium transition-all duration-200 ${
+                  active ? r.activeTab : "text-ink-soft hover:bg-linen-soft"
+                }`}
+              >
+                <Icon className="h-5 w-5" />
+                {r.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mx-auto mb-10 flex max-w-xl items-start gap-3 rounded-xl border border-parchment-deep bg-white px-5 py-4">
+          <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full ${role.badgeBg}`}>
+            <role.icon className={`h-4 w-4 ${role.badgeText}`} />
           </div>
+          <p className="text-sm text-ink-soft">{role.helper}</p>
+        </div>
 
-          {/* Email */}
-          <div>
-            <label className="block text-gray-600">Email</label>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
-              required
-            />
-          </div>
+        {/* The actual registration form, remounted per role */}
+        <div key={activeRole}>
+          {activeRole === "donor" && <DonorRegister />}
+          {activeRole === "hospital" && (
+            <FacultyRegister initialFacilityType="Hospital" />
+          )}
+          {activeRole === "blood-lab" && (
+            <FacultyRegister initialFacilityType="Blood Lab" />
+          )}
+        </div>
 
-          {/* Password */}
-          <div>
-            <label className="block text-gray-600">Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
-              required
-            />
-          </div>
-
-          {/* Role */}
-          <div>
-            <label className="block text-gray-600">Role</label>
-            <select
-              name="role"
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
-            >
-              <option value="user">User</option>
-              <option value="hospital">Hospital</option>
-            </select>
-          </div>
-
-          {/* Submit */}
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition"
-          >
-            Register
-          </button>
-        </form>
-
-        <p className="text-center text-gray-600 mt-4">
+        <p className="mt-8 text-center text-sm text-ink-soft">
           Already have an account?{" "}
-          <span
-            onClick={() => navigate("/login")}
-            className="text-blue-500 cursor-pointer hover:underline"
+          <Link
+            to={`/login?role=${activeRole}`}
+            className="font-medium text-oxblood hover:underline"
           >
-            Login
-          </span>
+            Sign in as {role.label}
+          </Link>
         </p>
+      </div>
+
+      <div className="mt-16">
+        <Footer />
       </div>
     </div>
   );

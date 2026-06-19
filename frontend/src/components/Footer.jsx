@@ -1,28 +1,28 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Heart, MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import BrandMark from "./visuals/BrandMark";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
     { name: "About Us", path: "/about" },
-    { name: "Our Mission", path: "/about" },
+    { name: "Our Mission", path: "/about#mission" },
     { name: "Success Stories", path: "/about" },
     { name: "News & Updates", path: "/contact" },
   ];
 
   const donorResources = [
-    { name: "Become a Donor", path: "/register/donor" },
-    { name: "Eligibility Criteria", path: "/register/donor" },
-    { name: "Donation Process", path: "/register/donor" },
-    { name: "Donor Benefits", path: "/register/donor" },
+    { name: "Become a Donor", path: "/signup?role=donor" },
+    { name: "Eligibility Criteria", path: "/about" },
+    { name: "Donation Process", path: "/about" },
+    { name: "Donor Login", path: "/login?role=donor" },
   ];
 
   const hospitalResources = [
-    { name: "Partner with Us", path: "/register/facility" },
-    { name: "Blood Request", path: "/login" },
-    { name: "Inventory Management", path: "/login" },
+    { name: "Register a Hospital", path: "/signup?role=hospital" },
+    { name: "Register a Blood Lab", path: "/signup?role=blood-lab" },
+    { name: "Facility Login", path: "/login?role=hospital" },
     { name: "Emergency Protocol", path: "/contact" },
   ];
 
@@ -34,24 +34,22 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-gray-900 text-white">
+    <footer className="bg-ink text-linen">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
+            <Link to="/" className="mb-6 flex items-center gap-3">
+              <BrandMark size={40} />
               <div>
-                <h2 className="text-xl font-bold text-white">BloodConnect</h2>
-                <p className="text-red-200 text-sm">Life Saver Network</p>
+                <h2 className="font-display text-xl text-linen">LifeLine</h2>
+                <p className="text-sm text-linen/60">Life Saver Network</p>
               </div>
             </Link>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Connecting compassionate donors with those in need through advanced blood bank management technology. Together, we save lives.
+            <p className="mb-6 leading-relaxed text-linen/70">
+              Connecting compassionate donors with those in need through
+              dependable blood bank technology. Together, we save lives.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => {
@@ -60,10 +58,10 @@ const Footer = () => {
                   <a
                     key={index}
                     href={social.url}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-red-600 transition-all duration-300 hover:scale-110"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-oxblood"
                     aria-label={social.name}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="h-5 w-5" />
                   </a>
                 );
               })}
@@ -72,8 +70,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full"></div>
+            <h3 className="mb-6 flex items-center gap-2 font-display text-lg text-linen">
+              <div className="h-4 w-1 rounded-full bg-oxblood"></div>
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -81,9 +79,9 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                    className="group flex items-center gap-2 text-linen/70 transition-colors duration-200 hover:text-linen"
                   >
-                    <div className="w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="h-1 w-1 rounded-full bg-oxblood opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
                     {link.name}
                   </Link>
                 </li>
@@ -93,8 +91,8 @@ const Footer = () => {
 
           {/* For Donors */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full"></div>
+            <h3 className="mb-6 flex items-center gap-2 font-display text-lg text-linen">
+              <div className="h-4 w-1 rounded-full bg-oxblood"></div>
               For Donors
             </h3>
             <ul className="space-y-3">
@@ -102,9 +100,9 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                    className="group flex items-center gap-2 text-linen/70 transition-colors duration-200 hover:text-linen"
                   >
-                    <div className="w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="h-1 w-1 rounded-full bg-oxblood opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
                     {link.name}
                   </Link>
                 </li>
@@ -112,20 +110,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* For Hospitals */}
+          {/* For Hospitals & Labs */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full"></div>
-              For Hospitals
+            <h3 className="mb-6 flex items-center gap-2 font-display text-lg text-linen">
+              <div className="h-4 w-1 rounded-full bg-oxblood"></div>
+              For Hospitals &amp; Labs
             </h3>
             <ul className="space-y-3">
               {hospitalResources.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                    className="group flex items-center gap-2 text-linen/70 transition-colors duration-200 hover:text-linen"
                   >
-                    <div className="w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="h-1 w-1 rounded-full bg-oxblood opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
                     {link.name}
                   </Link>
                 </li>
@@ -134,39 +132,39 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="mt-8 space-y-3">
-              <div className="flex items-center gap-3 text-gray-300">
-                <Phone className="w-4 h-4 text-red-400" />
+              <div className="flex items-center gap-3 text-linen/70">
+                <Phone className="h-4 w-4 text-oxblood" />
                 <span>Emergency Hotline: 1-800-BLOOD-NOW</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <Mail className="w-4 h-4 text-red-400" />
-                <span>help@bloodconnect.org</span>
+              <div className="flex items-center gap-3 text-linen/70">
+                <Mail className="h-4 w-4 text-oxblood" />
+                <span>help@lifeline.org</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-300">
-                <MapPin className="w-4 h-4 text-red-400" />
+              <div className="flex items-center gap-3 text-linen/70">
+                <MapPin className="h-4 w-4 text-oxblood" />
                 <span>Nationwide Network</span>
               </div>
             </div>
           </div>
         </div>
-
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-400 text-sm">
-              © {currentYear} BloodConnect. All rights reserved. Saving lives through technology.
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="text-sm text-linen/50">
+              © {currentYear} LifeLine. All rights reserved. Saving lives
+              through technology.
             </div>
-            <div className="flex items-center gap-6 text-sm text-gray-400">
-              <Link to="/contact" className="hover:text-white transition-colors duration-200">
+            <div className="flex items-center gap-6 text-sm text-linen/50">
+              <Link to="/contact" className="transition-colors duration-200 hover:text-linen">
                 Privacy Policy
               </Link>
-              <Link to="/contact" className="hover:text-white transition-colors duration-200">
+              <Link to="/contact" className="transition-colors duration-200 hover:text-linen">
                 Terms of Service
               </Link>
-              <Link to="/contact" className="hover:text-white transition-colors duration-200">
+              <Link to="/contact" className="transition-colors duration-200 hover:text-linen">
                 Cookie Policy
               </Link>
             </div>
@@ -177,10 +175,10 @@ const Footer = () => {
       {/* Floating Donate Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <Link
-          to="/register/donor"
-          className="flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:from-red-700 hover:to-red-800"
+          to="/signup?role=donor"
+          className="flex items-center gap-2 rounded-full bg-oxblood px-6 py-4 font-semibold text-linen shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-oxblood-dark"
         >
-          <Heart className="w-5 h-5" />
+          <Heart className="h-5 w-5" />
           <span>Donate Now</span>
         </Link>
       </div>

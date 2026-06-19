@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
 @import "tailwindcss";
 
-*{
+/* ============================================================
+   LifeLine design tokens — "warm human" direction
+   Deep crimson (oxblood) + cream (linen), Fraunces display serif,
+   Inter body, JetBrains Mono for clinical/data readouts.
+   ============================================================ */
+
+* {
   font-family: "Inter", sans-serif;
 }
 
@@ -10,44 +14,79 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  --radius: 0.75rem;
+
+  /* ---- Core palette ---- */
+  --linen: #faf3ea;          /* page background */
+  --linen-soft: #f3e8da;     /* subtle section tint */
+  --parchment: #f0e1cd;      /* card / alt background */
+  --parchment-deep: #e6d2b6; /* borders on parchment */
+
+  --oxblood: #7e1c2c;        /* primary brand crimson */
+  --oxblood-dark: #5c1421;   /* hover / pressed */
+  --oxblood-soft: #f4dfdf;   /* pale crimson tint for chips/badges */
+
+  --ink: #2a1a15;            /* primary text, warm near-black */
+  --ink-soft: #6b5a4e;       /* secondary text */
+  --ink-faint: #9c8b7d;      /* tertiary / placeholder text */
+
+  --marigold: #d98b3d;       /* warmth accent */
+  --marigold-dark: #b86f2a;
+  --marigold-soft: #f7e6cd;
+
+  /* ---- Role accents (used in login/signup tabs) ---- */
+  --role-donor: #7e1c2c;     /* oxblood */
+  --role-donor-soft: #f4dfdf;
+  --role-hospital: #2f5266;  /* steel blue */
+  --role-hospital-soft: #dee9ee;
+  --role-lab: #3f6650;       /* deep sage */
+  --role-lab-soft: #dfe9e2;
+  --role-admin: #463a31;     /* charcoal */
+  --role-admin-soft: #e6e0d8;
+
+  /* ---- Fonts ---- */
+  --font-display: "Fraunces", "Iowan Old Style", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ---- shadcn-style mapping onto our palette ---- */
+  --background: var(--linen);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--oxblood);
+  --primary-foreground: var(--linen);
+  --secondary: var(--parchment);
+  --secondary-foreground: var(--ink);
+  --muted: var(--linen-soft);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--marigold);
+  --accent-foreground: var(--ink);
+  --destructive: #b3261e;
+  --border: var(--parchment-deep);
+  --input: var(--parchment-deep);
+  --ring: var(--oxblood);
+  --chart-1: var(--oxblood);
+  --chart-2: var(--marigold);
+  --chart-3: var(--role-hospital);
+  --chart-4: var(--role-lab);
+  --chart-5: var(--role-admin);
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--oxblood);
+  --sidebar-primary-foreground: var(--linen);
+  --sidebar-accent: var(--linen-soft);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--parchment-deep);
+  --sidebar-ring: var(--oxblood);
 }
 
 @theme inline {
@@ -55,6 +94,34 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --color-linen: var(--linen);
+  --color-linen-soft: var(--linen-soft);
+  --color-parchment: var(--parchment);
+  --color-parchment-deep: var(--parchment-deep);
+  --color-oxblood: var(--oxblood);
+  --color-oxblood-dark: var(--oxblood-dark);
+  --color-oxblood-soft: var(--oxblood-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-marigold: var(--marigold);
+  --color-marigold-dark: var(--marigold-dark);
+  --color-marigold-soft: var(--marigold-soft);
+
+  --color-role-donor: var(--role-donor);
+  --color-role-donor-soft: var(--role-donor-soft);
+  --color-role-hospital: var(--role-hospital);
+  --color-role-hospital-soft: var(--role-hospital-soft);
+  --color-role-lab: var(--role-lab);
+  --color-role-lab-soft: var(--role-lab-soft);
+  --color-role-admin: var(--role-admin);
+  --color-role-admin-soft: var(--role-admin-soft);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -88,48 +155,61 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+body {
+  background-color: var(--linen);
+  color: var(--ink);
 }
 
-input{
+input,
+textarea,
+select {
   outline: none;
 }
 
-textarea{
-  outline: none;
+/* ============================================================
+   Signature element: the Pulse Line.
+   A heartbeat/ECG trace used as section dividers, in the logo
+   mark, and as a draw-in accent. Replaces the cliché wave-svg.
+   ============================================================ */
+.pulse-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: pulse-draw 2.2s ease-out forwards;
 }
 
-select{
-  outline: none;
+@keyframes pulse-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Subtle continuous beat used on small live-indicator dots */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+.pulse-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* Editorial underline-draw for the "About" story sections */
+@keyframes underline-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.underline-grow {
+  transform-origin: left;
+  animation: underline-grow 0.8s ease-out forwards;
 }

@@ -9,26 +9,26 @@ import {
   Zap,
   Search,
   Bell,
-  Calendar,
   FileText,
-  Award,
   CheckCircle,
-  Target,
   Activity,
   RefreshCw,
   AlertTriangle,
   Stethoscope,
+  Building2,
+  FlaskConical,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PulseDivider from "../components/visuals/PulseDivider";
 
 const LandingPage = () => {
   const stats = [
     { icon: Users, label: "Lives Saved", value: "10,000+" },
     { icon: Heart, label: "Blood Units", value: "50,000+" },
     { icon: MapPin, label: "Partner Hospitals", value: "150+" },
-    { icon: Clock, label: "Response Time", value: "< 30min" },
+    { icon: Clock, label: "Response Time", value: "< 30 min" },
   ];
 
   const features = [
@@ -36,22 +36,19 @@ const LandingPage = () => {
       icon: Users,
       title: "Easy Donor Registration",
       description:
-        "Simple and secure donor registration process with medical history tracking and eligibility verification.",
-      color: "red",
+        "A simple, secure registration flow with medical history tracking and eligibility checks built in.",
     },
     {
       icon: Droplets,
-      title: "Real-time Inventory Tracking",
+      title: "Real-Time Inventory",
       description:
-        "Monitor blood inventory levels, expiration dates, and distribution in real-time across all partner facilities.",
-      color: "blue",
+        "Track blood units, expiry dates, and distribution live across every partner hospital and lab.",
     },
     {
       icon: Zap,
-      title: "Quick Response",
+      title: "Rapid Response",
       description:
-        "Emergency request system with automated matching and notification to ensure rapid response in critical situations.",
-      color: "green",
+        "Emergency requests are matched and routed automatically so urgent needs are never left waiting.",
     },
   ];
 
@@ -60,24 +57,25 @@ const LandingPage = () => {
       step: "01",
       icon: FileText,
       title: "Register & Screen",
-      description: "Complete simple registration and health screening process",
+      description: "Complete a short registration and health screening.",
     },
     {
       step: "02",
       icon: Search,
-      title: "Find Match",
-      description: "Our system matches blood needs with compatible donors",
+      title: "Find a Match",
+      description: "We match blood needs with compatible, eligible donors.",
     },
     {
       step: "03",
       icon: Bell,
       title: "Get Notified",
-      description: "Receive instant alerts for urgent needs in your area",
+      description: "Receive an alert the moment your blood type is needed.",
     },
     {
       step: "04",
+      icon: Heart,
       title: "Donate & Save Lives",
-      description: "Visit approved centers and make your life-saving donation",
+      description: "Visit an approved center and make your donation count.",
     },
   ];
 
@@ -92,34 +90,41 @@ const LandingPage = () => {
     { type: "AB-", need: "Medium", donors: "1%" },
   ];
 
+  const needStyles = {
+    Critical: "text-oxblood bg-oxblood-soft",
+    High: "text-marigold-dark bg-marigold-soft",
+    Medium: "text-role-lab bg-role-lab-soft",
+    Low: "text-role-hospital bg-role-hospital-soft",
+  };
+
   const donationFacts = [
     {
       icon: Heart,
       title: "One Donation, Multiple Lives",
       description:
-        "A single blood donation can save up to 3 lives. Your one hour can give someone a lifetime.",
-      stat: "3 Lives Saved",
+        "A single donation can save up to 3 lives — your one hour can give someone a lifetime.",
+      stat: "3 lives saved",
     },
     {
       icon: RefreshCw,
-      title: "Blood Regeneration",
+      title: "Your Body Replenishes Fast",
       description:
-        "Your body replaces the blood you donate within 24-48 hours. The red blood cells are completely replaced in 4-6 weeks.",
-      stat: "48 Hours",
+        "Plasma rebuilds within 24–48 hours; red cells fully replace in 4–6 weeks.",
+      stat: "48 hours",
     },
     {
-      icon: Users,
-      title: "Constant Need",
+      icon: Activity,
+      title: "The Need Never Pauses",
       description:
-        "Every 2 seconds, someone needs blood. Your regular donation ensures continuous supply for emergencies.",
-      stat: "Every 2 Seconds",
+        "Someone needs blood every 2 seconds. Regular donors keep that supply steady.",
+      stat: "every 2 sec",
     },
     {
       icon: AlertTriangle,
-      title: "Short Shelf Life",
+      title: "A Short Shelf Life",
       description:
-        "Red blood cells last only 42 days, platelets just 5 days. Regular donations are essential to maintain supply.",
-      stat: "42 Days Shelf Life",
+        "Red cells last only 42 days, platelets just 5 — fresh donations are constantly needed.",
+      stat: "42 day shelf life",
     },
   ];
 
@@ -128,9 +133,9 @@ const LandingPage = () => {
       icon: CheckCircle,
       title: "Who Can Donate",
       items: [
-        "Age 17-75 (16 with parental consent)",
-        "Weight at least 110 lbs (50 kg)",
-        "Good general health",
+        "Age 17–75 (16 with parental consent)",
+        "At least 110 lbs (50 kg)",
+        "Generally good health",
         "No flu or cold symptoms",
       ],
     },
@@ -138,20 +143,20 @@ const LandingPage = () => {
       icon: Stethoscope,
       title: "Health Benefits",
       items: [
-        "Free health screening",
-        "Burns 650 calories per donation",
-        "Reduces risk of heart disease",
-        "Stimulates blood cell production",
+        "A free mini health screening",
+        "Burns ~650 calories per donation",
+        "May reduce heart disease risk",
+        "Stimulates new blood cell production",
       ],
     },
     {
       icon: Shield,
       title: "Safety First",
       items: [
-        "Sterile, disposable equipment",
-        "Trained medical staff",
-        "Comfortable environment",
-        "Post-donation care",
+        "Sterile, single-use equipment",
+        "Trained medical staff on site",
+        "A calm, comfortable setting",
+        "Guided post-donation care",
       ],
     },
   ];
@@ -159,138 +164,134 @@ const LandingPage = () => {
   const emergencyNeeds = [
     { type: "Accident Victims", units: "Up to 100 units", icon: AlertTriangle },
     { type: "Cancer Patients", units: "8 units weekly", icon: Heart },
-    { type: "Surgery Patients", units: "5-10 units", icon: Stethoscope },
+    { type: "Surgery Patients", units: "5–10 units", icon: Stethoscope },
     { type: "Burn Victims", units: "20+ units", icon: Activity },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-red-50 mt-10">
+    <div className="min-h-screen bg-linen">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-red-700 to-red-900 text-white">
-        <div className="absolute inset-0 opacity-20"></div>
-        <div className="container mx-auto px-4 py-20 text-center relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm font-medium mb-6 backdrop-blur-sm">
-              <Heart className="w-4 h-4" />
-              Saving Lives Every Day
+      {/* ============ Hero ============ */}
+      <section className="relative overflow-hidden pt-32 pb-10 md:pt-40 md:pb-16">
+        {/* faint oversized brand drop, thematically grounded watermark */}
+        <svg
+          className="pointer-events-none absolute -right-24 -top-16 w-[28rem] opacity-[0.05] md:w-[36rem]"
+          viewBox="0 0 48 48"
+          fill="none"
+        >
+          <path
+            d="M24 4C24 4 9 21.5 9 30.5C9 38.5 15.8 44 24 44C32.2 44 39 38.5 39 30.5C39 21.5 24 4 24 4Z"
+            fill="var(--oxblood)"
+          />
+        </svg>
+
+        <div className="container relative z-10 mx-auto grid max-w-6xl gap-14 px-4 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-oxblood/15 bg-oxblood-soft px-4 py-1.5 text-sm font-medium text-oxblood">
+              <span className="relative inline-flex h-2 w-2">
+                <span className="pulse-dot relative inline-flex h-2 w-2 rounded-full bg-oxblood text-oxblood"></span>
+              </span>
+              Saving lives, one donor at a time
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Connect{" "}
-              <span className="bg-gradient-to-r from-red-200 to-red-300 bg-clip-text text-transparent">
-                Blood Donors
-              </span>{" "}
-              with Those in Need
+            <h1 className="font-display text-4xl leading-[1.1] text-ink md:text-6xl">
+              Every donor has a story.
+              <br />
+              <span className="italic text-oxblood">So does every life</span>{" "}
+              they save.
             </h1>
 
-            <p className="text-lg md:text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-              Our advanced blood bank management system ensures efficient
-              donation, storage, and distribution of blood products to save
-              lives when every second counts.
+            <p className="mt-6 max-w-xl text-lg text-ink-soft">
+              LifeLine connects donors, hospitals, and blood labs on one
+              platform — so the right blood reaches the right patient before
+              it's too late.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/login">
-                <button className="inline-flex items-center justify-center px-6 py-3 text-lg font-medium rounded-xl bg-white text-red-700 hover:bg-red-50 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  Get Started <ArrowRight className="w-4 h-4 ml-2" />
-                </button>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link
+                to="/signup?role=donor"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-oxblood px-6 py-3.5 text-base font-semibold text-linen shadow-md transition-all hover:bg-oxblood-dark hover:shadow-lg"
+              >
+                Become a Donor <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href="#about">
-                <button className="inline-flex items-center justify-center px-6 py-3 text-lg font-medium rounded-xl border-2 border-white text-white hover:bg-white/10 transition-all duration-300">
-                  Learn More
-                </button>
-              </a>
+              <Link
+                to="/signup?role=hospital"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-ink/15 px-6 py-3.5 text-base font-semibold text-ink transition-all hover:border-oxblood/40 hover:text-oxblood"
+              >
+                We're a Hospital or Lab
+              </Link>
+            </div>
+
+            <p className="mt-5 text-sm text-ink-faint">
+              Already registered?{" "}
+              <Link to="/login" className="font-medium text-oxblood underline-offset-2 hover:underline">
+                Sign in to your dashboard
+              </Link>
+            </p>
+          </div>
+
+          {/* "Vitals" readout card — clinical counterpoint to the warm headline */}
+          <div className="rounded-2xl border border-parchment-deep bg-white p-6 shadow-xl shadow-oxblood/5">
+            <div className="mb-4 flex items-center justify-between border-b border-parchment-deep pb-4">
+              <span className="font-display text-sm tracking-wide text-ink-soft">
+                Network Vitals
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-role-lab">
+                ● live
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-5">
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={index}>
+                    <Icon className="mb-2 h-4 w-4 text-oxblood" />
+                    <div className="font-mono text-xl font-semibold text-ink">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-ink-faint">{stat.label}</div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg
-            className="relative block w-full h-16"
-            viewBox="0 0 1200 150"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V150H0V90.83C36.67,85.19,76.33,76,112,69.33C160.67,59.67,224.67,47.33,321.39,56.44Z"
-              className="fill-slate-50"
-            ></path>
-          </svg>
+        <div className="mt-14">
+          <PulseDivider />
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* ============ Current Blood Needs ============ */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={index}
-                  className="text-center p-6 rounded-xl bg-red-50 hover:bg-red-100 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-200 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-red-700" />
-                  </div>
-                  <div className="text-2xl md:text-3xl font-bold text-red-900 mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-red-700 text-sm font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Blood Need Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="font-display text-3xl text-ink md:text-4xl">
               Current Blood Needs
             </h2>
-            <p className="text-lg text-slate-600">
-              Real-time blood type requirements across our network. Your
-              donation matters now more than ever.
+            <p className="mt-4 text-lg text-ink-soft">
+              A real-time look at blood type demand across our network.
+              Your donation matters most exactly where it's short.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
             {bloodTypes.map((blood, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-all duration-300"
+                className="rounded-xl border border-parchment-deep bg-white p-5 text-center shadow-sm transition-shadow hover:shadow-md"
               >
-                <div
-                  className={`text-2xl font-bold mb-2 ${
-                    blood.need === "Critical"
-                      ? "text-red-600"
-                      : blood.need === "High"
-                      ? "text-orange-500"
-                      : "text-green-500"
-                  }`}
-                >
+                <div className="font-display text-2xl text-ink">
                   {blood.type}
                 </div>
                 <div
-                  className={`text-sm font-medium px-2 py-1 rounded-full ${
-                    blood.need === "Critical"
-                      ? "bg-red-100 text-red-700"
-                      : blood.need === "High"
-                      ? "bg-orange-100 text-orange-700"
-                      : "bg-green-100 text-green-700"
-                  }`}
+                  className={`mt-2 inline-block rounded-full px-2.5 py-1 text-xs font-medium ${needStyles[blood.need]}`}
                 >
-                  {blood.need} Need
+                  {blood.need} need
                 </div>
-                <div className="text-xs text-slate-500 mt-2">
-                  {blood.donors} Donors
+                <div className="mt-3 font-mono text-xs text-ink-faint">
+                  {blood.donors} of donors
                 </div>
               </div>
             ))}
@@ -298,37 +299,37 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Why Donate Blood Section - NEW */}
-      <section className="py-20 bg-white">
+      {/* ============ Why your donation matters ============ */}
+      <section className="bg-linen-soft py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-              Why Your Blood Donation Matters
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="font-display text-3xl text-ink md:text-4xl">
+              Why Your Donation Matters
             </h2>
-            <p className="text-lg text-slate-600">
-              Every donation creates a ripple effect of hope and healing in our
-              community.
+            <p className="mt-4 text-lg text-ink-soft">
+              Every donation sends a ripple of hope through someone's hardest
+              day.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
             {donationFacts.map((fact, index) => {
               const Icon = fact.icon;
               return (
                 <div
                   key={index}
-                  className="bg-slate-50 rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 border-t-4 border-red-500"
+                  className="rounded-2xl border-t-4 border-oxblood bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-red-600" />
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-oxblood-soft">
+                    <Icon className="h-7 w-7 text-oxblood" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 text-slate-800">
+                  <h3 className="mb-2 font-display text-lg text-ink">
                     {fact.title}
                   </h3>
-                  <p className="text-slate-600 text-sm mb-4">
+                  <p className="mb-4 text-sm text-ink-soft">
                     {fact.description}
                   </p>
-                  <div className="text-red-600 font-bold text-lg">
+                  <div className="font-mono text-sm font-semibold text-oxblood">
                     {fact.stat}
                   </div>
                 </div>
@@ -338,125 +339,76 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Emergency Needs Section - NEW */}
-      <section className="py-20 bg-gradient-to-br from-red-600 to-red-800 text-white">
+      {/* ============ How It Works — pulse-line stepper ============ */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Who Needs Your Blood?
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="font-display text-3xl text-ink md:text-4xl">
+              How It Works
             </h2>
-            <p className="text-lg text-red-100">
-              Your donation directly impacts patients in critical situations
+            <p className="mt-4 text-lg text-ink-soft">
+              Four simple steps stand between you and your first life saved.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {emergencyNeeds.map((need, index) => {
-              const Icon = need.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white/10 rounded-2xl p-6 text-center backdrop-blur-sm hover:bg-white/15 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-white" />
+          <div className="relative mx-auto max-w-6xl">
+            <div className="absolute left-0 right-0 top-7 hidden h-px bg-parchment-deep md:block" />
+            <div className="grid gap-10 md:grid-cols-4">
+              {processSteps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <div key={index} className="relative text-center">
+                    <div className="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border-4 border-linen bg-oxblood text-linen shadow-md">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div className="mb-2 font-mono text-xs tracking-widest text-ink-faint">
+                      STEP {step.step}
+                    </div>
+                    <h3 className="mb-2 font-display text-lg text-ink">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-ink-soft">{step.description}</p>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2 text-white">
-                    {need.type}
-                  </h3>
-                  <p className="text-red-100 text-sm">{need.units}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <div className="bg-white/10 rounded-2xl p-6 max-w-2xl mx-auto backdrop-blur-sm">
-              <p className="text-lg text-white mb-4">
-                <strong>47% of the population</strong> is eligible to donate
-                blood, but only <strong>5%</strong> actually do.
-              </p>
-              <p className="text-red-100">
-                Your single donation can make all the difference.
-              </p>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-20 bg-slate-50">
+      {/* ============ Eligibility & Benefits ============ */}
+      <section className="bg-linen-soft py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-              How It Works
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="font-display text-3xl text-ink md:text-4xl">
+              Donor Eligibility &amp; Benefits
             </h2>
-            <p className="text-lg text-slate-600">
-              Simple steps to become a life-saver. Join thousands of donors
-              making a difference.
+            <p className="mt-4 text-lg text-ink-soft">
+              Safe, simple, and quietly good for you too.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {processSteps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="text-center group">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border-t-4 border-red-500 group-hover:transform group-hover:-translate-y-2">
-                    <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
-                      {step.step}
-                    </div>
-                    {Icon && (
-                      <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-500 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                    )}
-                    <h3 className="text-lg font-semibold mb-3 text-slate-800">
-                      {step.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm">{step.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility & Benefits Section - NEW */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-              Donor Eligibility & Benefits
-            </h2>
-            <p className="text-lg text-slate-600">
-              Safe, simple, and rewarding - discover the benefits of blood
-              donation
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
             {eligibilityInfo.map((info, index) => {
               const Icon = info.icon;
               return (
                 <div
                   key={index}
-                  className="bg-slate-50 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300"
+                  className="rounded-2xl bg-white p-7 shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-red-600" />
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-oxblood-soft">
+                    <Icon className="h-6 w-6 text-oxblood" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-slate-800 text-center">
+                  <h3 className="mb-4 text-center font-display text-xl text-ink">
                     {info.title}
                   </h3>
                   <ul className="space-y-3">
                     {info.items.map((item, itemIndex) => (
                       <li
                         key={itemIndex}
-                        className="flex items-start gap-3 text-slate-600"
+                        className="flex items-start gap-3 text-sm text-ink-soft"
                       >
-                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-role-lab" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -468,78 +420,132 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-slate-50">
+      {/* ============ One platform, three roles ============ */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-              Why Choose Our Blood Bank System?
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="font-display text-3xl text-ink md:text-4xl">
+              One Platform, Built for Everyone Involved
             </h2>
-            <p className="text-lg text-slate-600">
-              We provide a comprehensive platform that connects donors,
-              hospitals, and blood banks to ensure efficient blood collection
-              and distribution.
+            <p className="mt-4 text-lg text-ink-soft">
+              Donors, hospitals, and blood labs each get an experience shaped
+              around how they actually work.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 border-t-4 border-red-500"
+                  className="rounded-2xl border-t-4 border-oxblood bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-red-600" />
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-oxblood-soft">
+                    <Icon className="h-8 w-8 text-oxblood" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-slate-800">
+                  <h3 className="mb-2 font-display text-xl text-ink">
                     {feature.title}
                   </h3>
-                  <p className="text-slate-600">{feature.description}</p>
+                  <p className="text-ink-soft">{feature.description}</p>
                 </div>
               );
             })}
           </div>
+
+          <div className="mx-auto mt-8 flex max-w-5xl flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              to="/signup?role=hospital"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-role-hospital/30 bg-role-hospital-soft px-5 py-3 text-sm font-semibold text-role-hospital transition-colors hover:bg-role-hospital/10"
+            >
+              <Building2 className="h-4 w-4" /> Register a Hospital
+            </Link>
+            <Link
+              to="/signup?role=blood-lab"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-role-lab/30 bg-role-lab-soft px-5 py-3 text-sm font-semibold text-role-lab transition-colors hover:bg-role-lab/10"
+            >
+              <FlaskConical className="h-4 w-4" /> Register a Blood Lab
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Security Section */}
-      <section className="py-20 bg-white">
+      {/* ============ Emergency Needs ============ */}
+      <section className="bg-oxblood py-20 text-linen">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-10 max-w-5xl mx-auto">
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <h2 className="font-display text-3xl md:text-4xl">
+              Who Needs Your Blood?
+            </h2>
+            <p className="mt-4 text-lg text-linen/80">
+              Your donation reaches patients in their most critical moments.
+            </p>
+          </div>
+
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {emergencyNeeds.map((need, index) => {
+              const Icon = need.icon;
+              return (
+                <div
+                  key={index}
+                  className="rounded-2xl bg-white/10 p-6 text-center backdrop-blur-sm transition-colors hover:bg-white/15"
+                >
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+                    <Icon className="h-6 w-6 text-linen" />
+                  </div>
+                  <h3 className="mb-1 font-display text-lg">{need.type}</h3>
+                  <p className="text-sm text-linen/75">{need.units}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mx-auto mt-12 max-w-2xl rounded-2xl bg-white/10 p-6 text-center backdrop-blur-sm">
+            <p className="text-lg">
+              <strong>47% of the population</strong> is eligible to donate
+              blood, but only <strong>5%</strong> actually do.
+            </p>
+            <p className="mt-2 text-linen/80">
+              Your single donation can make all the difference.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ Security ============ */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row">
             <div className="flex-1">
-              <div className="w-16 h-16 rounded-xl bg-red-100 flex items-center justify-center mb-6">
-                <Shield className="w-8 h-8 text-red-600" />
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-oxblood-soft">
+                <Shield className="h-7 w-7 text-oxblood" />
               </div>
-              <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                Secure & Compliant
+              <h2 className="mb-4 font-display text-3xl text-ink">
+                Secure &amp; Compliant
               </h2>
-              <p className="text-slate-600 mb-6">
-                Our system meets all healthcare data security standards with
-                end-to-end encryption and strict compliance with medical
-                regulations to protect donor and patient information.
+              <p className="mb-6 text-ink-soft">
+                Every record is encrypted end-to-end and handled under strict
+                healthcare data standards — so donors and patients can trust
+                the system that connects them.
               </p>
               <ul className="space-y-2">
-                <li className="flex items-center text-slate-600">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  HIPAA compliant data handling
-                </li>
-                <li className="flex items-center text-slate-600">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  End-to-end encryption
-                </li>
-                <li className="flex items-center text-slate-600">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  Regular security audits
-                </li>
+                {[
+                  "HIPAA-aligned data handling",
+                  "End-to-end encryption",
+                  "Regular independent security audits",
+                ].map((item) => (
+                  <li key={item} className="flex items-center text-ink-soft">
+                    <div className="mr-3 h-2 w-2 rounded-full bg-oxblood" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="flex-1 bg-red-50 rounded-2xl p-8 border border-red-100">
-              <div className="aspect-video bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center">
-                <div className="text-center p-4">
-                  <Shield className="w-12 h-12 text-red-500 mx-auto mb-4" />
-                  <p className="text-red-700 font-medium">
+            <div className="flex-1 rounded-2xl border border-parchment-deep bg-linen-soft p-8">
+              <div className="flex aspect-video items-center justify-center rounded-xl bg-oxblood-soft">
+                <div className="p-4 text-center">
+                  <Shield className="mx-auto mb-4 h-12 w-12 text-oxblood" />
+                  <p className="font-medium text-oxblood">
                     Secure Blood Bank Management
                   </p>
                 </div>
@@ -549,25 +555,33 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-red-700 to-red-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0  opacity-20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Save Lives?
+      {/* ============ Closing CTA ============ */}
+      <section className="relative overflow-hidden bg-ink py-20 text-linen">
+        <div className="container relative z-10 mx-auto px-4 text-center">
+          <h2 className="font-display text-3xl md:text-4xl">
+            Ready to Save a Life?
           </h2>
-          <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-            Join our community of donors and healthcare professionals working
-            together to ensure blood is available when and where it's needed
-            most.
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-linen/75">
+            Join a community of donors and healthcare professionals making
+            sure blood is there exactly when it's needed.
           </p>
-          <Link to="/login">
-            <button className="inline-flex items-center justify-center px-6 py-3 text-lg font-medium rounded-xl bg-white text-red-700 hover:bg-red-50 transition-all duration-300 shadow-lg hover:shadow-xl">
-              Join Today <ArrowRight className="w-4 h-4 ml-2" />
-            </button>
-          </Link>
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              to="/signup?role=donor"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-oxblood px-6 py-3.5 text-base font-semibold text-linen shadow-lg transition-all hover:bg-oxblood-dark"
+            >
+              Join as a Donor <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/signup?role=hospital"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-linen/30 px-6 py-3.5 text-base font-semibold text-linen transition-all hover:border-linen/60"
+            >
+              Join as a Facility
+            </Link>
+          </div>
         </div>
       </section>
+
       <Footer />
     </div>
   );
