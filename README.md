@@ -1,3 +1,8 @@
+git add .
+git commit -m "new changes"
+git push origin main
+
+
 # 🩸 Blood Bank Management System — Localhost Setup
 
 A full-stack web app for managing blood bank operations: donors, hospitals, blood labs, and admins.

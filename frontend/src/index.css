@@ -213,3 +213,118 @@ select {
   transform-origin: left;
   animation: underline-grow 0.8s ease-out forwards;
 }
+
+/* ============================================================
+   "Vitals Glass" theme — used exclusively by the Landing (/) and
+   About (/about) pages. A dark, glassmorphic counterpoint to the
+   warm linen app shell: deep ink atmosphere, frosted glass cards,
+   and a cyan/oxblood duotone glow standing in for a heart monitor.
+   Scoped under .vitals-theme so the rest of the app is untouched.
+   ============================================================ */
+.vitals-theme {
+  --vg-bg-0: #07080c;
+  --vg-bg-1: #0c0f16;
+  --vg-cyan: #3fe0c5;
+  --vg-cyan-soft: rgba(63, 224, 197, 0.14);
+  --vg-red: #ff3b54;
+  --vg-red-soft: rgba(255, 59, 84, 0.16);
+  --vg-glass: rgba(255, 255, 255, 0.055);
+  --vg-glass-strong: rgba(255, 255, 255, 0.09);
+  --vg-border: rgba(255, 255, 255, 0.12);
+  --vg-text: #f4f6f8;
+  --vg-text-soft: rgba(244, 246, 248, 0.68);
+  --vg-text-faint: rgba(244, 246, 248, 0.42);
+
+  background: var(--vg-bg-0);
+  color: var(--vg-text);
+  position: relative;
+}
+
+.vg-glass {
+  background: var(--vg-glass);
+  border: 1px solid var(--vg-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.vg-glass-strong {
+  background: var(--vg-glass-strong);
+  border: 1px solid var(--vg-border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.vg-glow-red {
+  box-shadow: 0 0 0 1px rgba(255, 59, 84, 0.18), 0 20px 60px -20px rgba(255, 59, 84, 0.35);
+}
+
+.vg-glow-cyan {
+  box-shadow: 0 0 0 1px rgba(63, 224, 197, 0.18), 0 20px 60px -20px rgba(63, 224, 197, 0.3);
+}
+
+.vg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.vg-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vg-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
+}
+
+/* Animated ECG sweep used in the hero monitor card */
+.vg-ecg-path {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: vg-ecg-draw 2.6s ease-out forwards, vg-ecg-loop 3.4s linear 2.6s infinite;
+}
+@keyframes vg-ecg-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes vg-ecg-loop {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -1400; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vg-ecg-path { animation: none; stroke-dashoffset: 0; }
+}
+
+@keyframes vg-float {
+  0%, 100% { transform: translateY(0) rotate(var(--vg-rot, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--vg-rot, 0deg)); }
+}
+.vg-float {
+  animation: vg-float 7s ease-in-out infinite;
+}
+.vg-float-slow {
+  animation: vg-float 10s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .vg-float, .vg-float-slow { animation: none; }
+}
+
+@keyframes vg-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.vg-blink {
+  animation: vg-blink 1.6s ease-in-out infinite;
+}
